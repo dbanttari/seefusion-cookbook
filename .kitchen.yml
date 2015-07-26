@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-6.4
+
+suites:
+  - name: tomcat7
+    
+    run_list:
+      - recipe[java::default]
+      - recipe[tomcat::default]
+      - recipe[seefusion::default]
+      
+    attributes:
+      tomcat:
+        base_version: 7
+      java:
+        jdk_version: 6
+      seefusion:
+        src: https://seefusion.s3.amazonaws.com/seefusion5.jar

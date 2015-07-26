@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>seefusion-cookbook</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<filteredResources>
+		<filter>
+			<id>1437438305622</id>
+			<name></name>
+			<type>5</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-.kitchen.yml</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1437438305630</id>
+			<name></name>
+			<type>5</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-true-.*</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
+</projectDescription>
