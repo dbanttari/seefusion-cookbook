@@ -1,18 +1,22 @@
 ---
 driver:
   name: vagrant
-
+  customize:
+    memory: 1024
+    
 provisioner:
   name: chef_solo
 
 platforms:
   - name: ubuntu-14.04
-  - name: centos-6.4
+#  - name: centos-6.4
 
 suites:
   - name: tomcat7
     
     run_list:
+      - recipe[apt]
+      - recipe[yum]
       - recipe[java::default]
       - recipe[tomcat::default]
       - recipe[seefusion::default]
@@ -24,3 +28,55 @@ suites:
         jdk_version: 6
       seefusion:
         src: https://seefusion.s3.amazonaws.com/seefusion5.jar
+      yum:
+        main:
+          exclude: epel
+
+  - name: cf10
+    
+    run_list:
+      - recipe[apt]
+      - recipe[yum]
+      - recipe[java::default]
+      - recipe[apache2]
+      - recipe[coldfusion10::standalone]
+      - recipe[coldfusion10::wsconfig]
+      - recipe[seefusion::default]
+      
+    attributes:
+      java:
+        jdk_version: 6
+      cf10:
+        installer:
+          url: https://s3.amazonaws.com/seefusion-build/ColdFusion_10_WWEJ_linux64.bin
+        webroot: /var/www
+      seefusion:
+        src: https://seefusion.s3.amazonaws.com/seefusion5.jar
+      yum:
+        main:
+          exclude: epel
+          
+  - name: cf11
+    
+    run_list:
+      - recipe[apt]
+      - recipe[yum]
+      - recipe[java::default]
+      - recipe[apache2]
+      - recipe[coldfusion10::standalone]
+      - recipe[coldfusion10::wsconfig]
+      - recipe[seefusion::default]
+      
+    attributes:
+      java:
+        jdk_version: 6
+      cf10:
+        installer:
+          url: https://s3.amazonaws.com/seefusion-build/ColdFusion_11_WWEJ_linux64.bin
+        webroot: /var/www
+      seefusion:
+        src: https://seefusion.s3.amazonaws.com/seefusion5.jar
+      yum:
+        main:
+          exclude: epel
+          

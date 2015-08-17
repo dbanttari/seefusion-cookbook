@@ -1,4 +1,4 @@
-default['seefusion']['src'] = 'https://seefusion.com/SeeFusion5.jar'
+default['seefusion']['src'] = 'https://seefusion.s3.amazonaws.com/seefusion5.jar'
 default['seefusion']['lib_dir'] = ''
 default['seefusion']['config_dir'] = ''
 

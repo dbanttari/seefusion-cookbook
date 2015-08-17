@@ -21,7 +21,15 @@ if defined?(node['tomcat']['config_dir'])
   node.default.seefusion['lib_dir'] = node['tomcat']['lib_dir']
   node.default.seefusion['config_dir'] = node['tomcat']['config_dir']
   include_recipe 'seefusion::tomcat'
-elsif defined?(node['coldfusion9'])
+#elsif defined?(node['coldfusion9'])
+elsif defined?(node['cf10'])
+  node.default.seefusion['lib_dir'] = "#{node['cf10']['installer']['install_folder']}/cfusion/runtime/lib"
+  node.default.seefusion['config_dir'] = "#{node['cf10']['installer']['install_folder']}/cfusion/runtime/conf"
+  include_recipe 'seefusion::tomcat'
+  service 'coldfusion' do
+  	action :restart
+  	not_if "java -jar #{node['seefusion']['lib_dir']}/seefusion.jar --is-installed tomcat #{node['seefusion']['config_dir']}"
+  end
 else
   Chef::Application.fatal!("Unable to autodetect where to install SeeFusion.  Please set  node['seefusion']['lib_dir'] / node['seefusion']['config_dir'] and call the correct recipe directly.")
 end
